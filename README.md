@@ -37,11 +37,16 @@ yarn add hebo-validation
 ## Usage
 
 ```js
-const HeboValidation = require('hebo-validation');
+const { validateEvent, InvalidEventError }  = require('hebo-validation');
 
-const heboValidation = new HeboValidation();
+try {
+    validateEvent(event);
+} catch (err) {
+    if (err instanceof InvalidEventError) {
+        // ...
+    }
+}
 
-console.log(heboValidation.renderName());
 // script
 ```
 
