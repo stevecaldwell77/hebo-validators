@@ -25,7 +25,6 @@ test('validateEvent()', t => {
         type: 'CREATE',
         payload: {},
         metadata: {},
-        version: 1,
         sequenceNumber: 1,
     };
 
@@ -80,9 +79,9 @@ test('validateEvent()', t => {
     );
 
     t.throws(
-        () => validateEvent(omit(validEvent, ['version', 'sequenceNumber'])),
-        /must contain at least one of \[version, sequenceNumber\]/,
-        'version or sequenceNumber required',
+        () => validateEvent(omit(validEvent, 'sequenceNumber')),
+        /"sequenceNumber" is required/,
+        'sequenceNumber required',
     );
 
     t.throws(

@@ -172,14 +172,11 @@ const eventSchema = Joi.object()
         type: Joi.string().required(),
         metadata: Joi.object().required(),
         payload: Joi.object().required(),
-        version: Joi.number()
-            .integer()
-            .greater(0),
         sequenceNumber: Joi.number()
             .integer()
-            .greater(0),
+            .greater(0)
+            .required(),
     })
-    .or('version', 'sequenceNumber')
     .unknown();
 
 const validateEvent = event => {
