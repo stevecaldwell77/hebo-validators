@@ -1,5 +1,5 @@
 {
-  "name": "hebo-validators",
+  "name": "hebo-validation",
   "description": "validation functions for hebo-js",
   "version": "1.0.0",
   "author": "Steve Caldwell <scaldwell@gmail.com>",
@@ -8,7 +8,7 @@
     "verbose": true
   },
   "bugs": {
-    "url": "https://github.com/stevecaldwell77/hebo-validators/issues",
+    "url": "https://github.com/stevecaldwell77/hebo-validation/issues",
     "email": "scaldwell@gmail.com"
   },
   "commitlint": {
@@ -19,7 +19,10 @@
   "contributors": [
     "Steve Caldwell <scaldwell@gmail.com>"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "joi": "^13.7.0",
+    "lodash": "^4.17.11"
+  },
   "devDependencies": {
     "@commitlint/cli": "^7.2.1",
     "@commitlint/config-conventional": "^7.1.2",
@@ -42,7 +45,7 @@
   "engines": {
     "node": ">=8.3"
   },
-  "homepage": "https://github.com/stevecaldwell77/hebo-validators",
+  "homepage": "https://github.com/stevecaldwell77/hebo-validation",
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged && npm test",
@@ -96,7 +99,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/stevecaldwell77/hebo-validators"
+    "url": "https://github.com/stevecaldwell77/hebo-validation"
   },
   "scripts": {
     "ava": "cross-env NODE_ENV=test ava",
