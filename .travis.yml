@@ -1,8 +1,15 @@
 language: node_js
 node_js:
-  - '8'
-  - '10'
-script:
-  npm run test-coverage
-after_success:
-  npm run coverage
+- '8'
+- '10'
+script: npm run test-coverage
+after_success: npm run coverage
+deploy:
+  provider: npm
+  email: scaldwell@gmail.com
+  api_key:
+    secure: u9xC8m6jBad58g/nEgYrSG/FSrWgPCTR4Rp9AMNZLpjIg6uPCm6PtcpwmyG15Eq2Irli08qPEchqxgjmC5B2wVY4xJey4opx5WYmJJIryBfc76OPF/eqTNHVGp/r2T1KObkysJgnDyU4HfYXkpihhV7cHk1bupL+LLJ6iCGyST9Wbl+wsPNYFE50CSy6mkpa50/uif0J0PjdSJbz7cQvxwzRyJte2ZB+UjUXL7U1nW26OZ7MdM4Ht8bDHnsif0ZV/XaguM7ail2/RtWiF4YRIvWjZoKu8/FUSaas2UX448Wqse4FyIrFnSNIOWlQDC41lSWEzIY3MLs1YX/NTNnciZxYlBuc6+e5GP8I3cG+PC5xPD4+ffxnSuD6NpEu1e39JMUDaJ8f4mS678A3YR08ItuzDyqUgBG+CBnTDmSrHlxzdCImGLxnqkR2lOaWIICX/Y+ioFvSs/DjhWlu4KdDy2hiS7YcFrqI13C951qF0ng4HN2jNDl0TpbBzw9+T+OOD3XA1QLy/Wa2eWGJFNc1/2jZAgHduKMGRUayNciDOX4HnORJCy5M1Exewj3G7i+hwlvHj5D2Hoe2fwIZqKHmgLrgG+2kjNtvvWtg4OwkbTVJ2ANT5WarnisUUyzXjokTJK7as2fhNqlZO8MZdCCWnpeEAQYQieTjX/PSOp04Zv0=
+  on:
+    tags: true
+    repo: stevecaldwell77/hebo-validators
+    node: '8'
