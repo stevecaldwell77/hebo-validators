@@ -11,6 +11,7 @@ const {
     DuplicateAggregateError,
     EventPayloadError,
     InvalidCommandParamsError,
+    InvalidEventError,
     InvariantViolatedError,
     MaxCommandAttemptsError,
     UnauthorizedError,
@@ -21,6 +22,8 @@ const {
 
 test('validateEvent()', t => {
     const validEvent = {
+        aggregateName: 'user',
+        aggregateId: shortid.generate(),
         eventId: shortid.generate(),
         type: 'CREATE',
         payload: {},
@@ -31,9 +34,45 @@ test('validateEvent()', t => {
     t.notThrows(() => validateEvent(validEvent), 'valid event passes');
 
     t.throws(
-        () => validateEvent(omit(validEvent, 'eventId')),
-        /"eventId" is required/,
-        'eventId required',
+        () => validateEvent({}),
+        InvalidEventError,
+        'throws InvalidEventError',
+    );
+
+    t.throws(
+        () => validateEvent(omit(validEvent, 'aggregateName')),
+        /"aggregateName" is required/,
+        'aggregateName required',
+    );
+
+    t.throws(
+        () => validateEvent({ ...validEvent, aggregateName: {} }),
+        /aggregateName" must be a string/,
+        'aggregateName must be correct type',
+    );
+
+    t.throws(
+        () => validateEvent(omit(validEvent, 'aggregateId')),
+        /"aggregateId" is required/,
+        'aggregateId required',
+    );
+
+    t.throws(
+        () => validateEvent({ ...validEvent, aggregateId: {} }),
+        /"aggregateId" must be a number, "aggregateId" must be a string/,
+        'aggregateId must be correct type',
+    );
+
+    t.throws(
+        () => validateEvent(omit(validEvent, 'type')),
+        /"type" is required/,
+        'type required',
+    );
+
+    t.throws(
+        () => validateEvent({ ...validEvent, type: 10 }),
+        /"type" must be a string/,
+        'type must be string',
     );
 
     t.throws(

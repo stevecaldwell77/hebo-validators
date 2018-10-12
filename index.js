@@ -166,6 +166,10 @@ const errorDetailsMessage = error =>
 
 const eventSchema = Joi.object()
     .keys({
+        aggregateName: Joi.string().required(),
+        aggregateId: Joi.alternatives()
+            .try(Joi.number(), Joi.string())
+            .required(),
         eventId: Joi.alternatives()
             .try(Joi.number(), Joi.string())
             .required(),
