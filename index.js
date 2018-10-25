@@ -195,6 +195,7 @@ const validateEvent = event => {
 
 const aggregateSchema = Joi.object()
     .keys({
+        idField: Joi.string().required(),
         projection: Joi.object().required(),
         commands: Joi.object().required(),
     })

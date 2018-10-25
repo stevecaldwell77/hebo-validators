@@ -138,6 +138,7 @@ test('validateEvent()', t => {
 
 test('validateAggregate()', t => {
     const validAggregate = {
+        idField: 'someId',
         projection: {
             initialState: noop,
             applyEvent: noop,
@@ -160,6 +161,13 @@ test('validateAggregate()', t => {
     t.notThrows(
         () => validateAggregate(validAggregate, 'testAggregate'),
         'valid aggregate passes',
+    );
+
+    t.throws(
+        () =>
+            validateAggregate(omit(validAggregate, 'idField'), 'testAggregate'),
+        /"idField" is required/,
+        'idField required',
     );
 
     t.throws(
