@@ -193,25 +193,31 @@ const validateEvent = event => {
     }
 };
 
-const aggregateSchema = Joi.object().keys({
-    projection: Joi.object().required(),
-    commands: Joi.object().required(),
-});
+const aggregateSchema = Joi.object()
+    .keys({
+        projection: Joi.object().required(),
+        commands: Joi.object().required(),
+    })
+    .unknown();
 
-const projectionSchema = Joi.object().keys({
-    initialState: Joi.func().required(),
-    applyEvent: Joi.func().required(),
-    validateState: Joi.func().required(),
-});
+const projectionSchema = Joi.object()
+    .keys({
+        initialState: Joi.func().required(),
+        applyEvent: Joi.func().required(),
+        validateState: Joi.func().required(),
+    })
+    .unknown();
 
-const commandSchema = Joi.object().keys({
-    validateParams: Joi.func().required(),
-    createEvent: Joi.func().required(),
-    isCreateCommand: Joi.boolean(),
-    retries: Joi.number()
-        .integer()
-        .positive(),
-});
+const commandSchema = Joi.object()
+    .keys({
+        validateParams: Joi.func().required(),
+        createEvent: Joi.func().required(),
+        isCreateCommand: Joi.boolean(),
+        retries: Joi.number()
+            .integer()
+            .positive(),
+    })
+    .unknown();
 
 const validateAggregate = (aggregate, aggregateName) => {
     const { error: aggregateError } = Joi.validate(aggregate, aggregateSchema);
