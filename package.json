@@ -20,7 +20,7 @@
     "Steve Caldwell <scaldwell@gmail.com>"
   ],
   "dependencies": {
-    "joi": "^13.7.0",
+    "@hapi/joi": "^16.1.7",
     "lodash": "^4.17.11"
   },
   "devDependencies": {
