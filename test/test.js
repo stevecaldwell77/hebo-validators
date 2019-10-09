@@ -59,7 +59,7 @@ test('validateEvent()', t => {
 
     t.throws(
         () => validateEvent({ ...validEvent, aggregateId: {} }),
-        /"aggregateId" must be a number, "aggregateId" must be a string/,
+        '"aggregateId" must be one of [number, string]',
         'aggregateId must be correct type',
     );
 
@@ -77,7 +77,7 @@ test('validateEvent()', t => {
 
     t.throws(
         () => validateEvent({ ...validEvent, eventId: {} }),
-        /"eventId" must be a number, "eventId" must be a string/,
+        '"eventId" must be one of [number, string]',
         'eventId must be correct type',
     );
 
@@ -101,7 +101,7 @@ test('validateEvent()', t => {
 
     t.throws(
         () => validateEvent({ ...validEvent, payload: 10 }),
-        /"payload" must be an object/,
+        '"payload" must be of type object',
         'payload must be an object',
     );
 
@@ -113,7 +113,7 @@ test('validateEvent()', t => {
 
     t.throws(
         () => validateEvent({ ...validEvent, metadata: 10 }),
-        /"metadata" must be an object/,
+        '"metadata" must be of type object',
         'metadata must be an object',
     );
 
@@ -249,7 +249,7 @@ test('validateEventRepository()', t => {
 
     {
         const { error } = validateEventRepository(validRepo);
-        t.is(error, null, 'no error for valid repo');
+        t.is(error, undefined, 'no error for valid repo');
     }
 
     {
@@ -273,7 +273,7 @@ test('validateNotificationHandler()', t => {
 
     {
         const { error } = validateNotificationHandler(validHandler);
-        t.is(error, null, 'no error for valid handler');
+        t.is(error, undefined, 'no error for valid handler');
     }
 
     {
@@ -299,7 +299,7 @@ test('validateSnapshotRepository()', t => {
 
     {
         const { error } = validateSnapshotRepository(validRepo);
-        t.is(error, null, 'no error for valid repo');
+        t.is(error, undefined, 'no error for valid repo');
     }
 
     {

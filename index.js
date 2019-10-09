@@ -1,4 +1,4 @@
-const Joi = require('joi');
+const Joi = require('@hapi/joi');
 const forIn = require('lodash/forIn');
 
 class AggregateNotFoundError extends Error {
@@ -182,7 +182,7 @@ const eventSchema = Joi.object()
     .unknown();
 
 const validateEvent = event => {
-    const { error } = Joi.validate(event, eventSchema);
+    const { error } = eventSchema.validate(event);
 
     if (error) {
         const messages = error.details.map(d => d.message);
@@ -219,7 +219,7 @@ const commandSchema = Joi.object()
     .unknown();
 
 const validateAggregate = (aggregate, aggregateName) => {
-    const { error: aggregateError } = Joi.validate(aggregate, aggregateSchema);
+    const { error: aggregateError } = aggregateSchema.validate(aggregate);
     if (aggregateError) {
         throw new InvalidAggregateError(
             errorDetailsMessage(aggregateError),
@@ -227,9 +227,8 @@ const validateAggregate = (aggregate, aggregateName) => {
         );
     }
 
-    const { error: projectionError } = Joi.validate(
+    const { error: projectionError } = projectionSchema.validate(
         aggregate.projection,
-        projectionSchema,
     );
     if (projectionError) {
         throw new InvalidProjectionError(
@@ -239,7 +238,7 @@ const validateAggregate = (aggregate, aggregateName) => {
     }
 
     forIn(aggregate.commands, (command, commandName) => {
-        const { error: commandError } = Joi.validate(command, commandSchema);
+        const { error: commandError } = commandSchema.validate(command);
         if (commandError) {
             throw new InvalidCommandError(
                 errorDetailsMessage(commandError),
@@ -257,7 +256,7 @@ const eventRepositorySchema = Joi.object()
     })
     .unknown();
 
-const validateEventRepository = r => Joi.validate(r, eventRepositorySchema);
+const validateEventRepository = r => eventRepositorySchema.validate(r);
 
 const snapshotRepositorySchema = Joi.object()
     .keys({
@@ -266,8 +265,7 @@ const snapshotRepositorySchema = Joi.object()
     })
     .unknown();
 
-const validateSnapshotRepository = r =>
-    Joi.validate(r, snapshotRepositorySchema);
+const validateSnapshotRepository = r => snapshotRepositorySchema.validate(r);
 
 const notificationHandlerSchema = Joi.object()
     .keys({
@@ -276,8 +274,7 @@ const notificationHandlerSchema = Joi.object()
     })
     .unknown();
 
-const validateNotificationHandler = r =>
-    Joi.validate(r, notificationHandlerSchema);
+const validateNotificationHandler = r => notificationHandlerSchema.validate(r);
 
 const authorizerSchema = Joi.object()
     .keys({
