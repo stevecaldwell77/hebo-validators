@@ -60,6 +60,7 @@
   "lint-staged": {
     "linters": {
       "*.js": [
+        "yarn lint --fix",
         "git add"
       ],
       "*.md": [
