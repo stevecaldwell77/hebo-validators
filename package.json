@@ -33,7 +33,7 @@
     "eslint-config-archereducation": "^4.3.1",
     "fixpack": "^2.3.1",
     "husky": "^1.1.2",
-    "lint-staged": "^7.3.0",
+    "lint-staged": "^8.2.1",
     "nyc": "^13.0.1",
     "prettier": "^1.18.2",
     "prettier-config-archereducation": "^1.0.0",
