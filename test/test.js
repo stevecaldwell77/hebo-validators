@@ -358,7 +358,7 @@ test('InvariantViolatedError', t => {
     t.true(err instanceof Error);
     t.snapshot(
         err,
-        'agreggate "book", id "AjLS_AMKa", empty state, msg "book cannot have zero length"', // eslint-disable-line max-len
+        'agreggate "book", id "AjLS_AMKa", empty state, msg "book cannot have zero length"',
     );
 });
 

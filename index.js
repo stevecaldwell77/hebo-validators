@@ -117,9 +117,7 @@ class MaxCommandAttemptsError extends Error {
 
 class UnauthorizedError extends Error {
     constructor(operation, userDesc) {
-        const message = `user ${userDesc} is not allowed to call ${
-            operation.type
-        } on ${operation.aggregateName} ${operation.aggregateId}`;
+        const message = `user ${userDesc} is not allowed to call ${operation.type} on ${operation.aggregateName} ${operation.aggregateId}`;
         super(message);
         this.name = this.constructor.name;
         Error.captureStackTrace(this, this.constructor);
