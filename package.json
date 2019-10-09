@@ -29,10 +29,14 @@
     "ava": "^0.25.0",
     "codecov": "^3.1.0",
     "cross-env": "^5.2.0",
+    "eslint": "^6.5.1",
+    "eslint-config-archereducation": "^4.3.1",
     "fixpack": "^2.3.1",
     "husky": "^1.1.2",
     "lint-staged": "^7.3.0",
     "nyc": "^13.0.1",
+    "prettier": "^1.18.2",
+    "prettier-config-archereducation": "^1.0.0",
     "remark-cli": "^5.0.0",
     "remark-preset-github": "^0.0.9",
     "shortid": "^2.2.13"
@@ -92,7 +96,7 @@
   "scripts": {
     "ava": "cross-env NODE_ENV=test ava",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "lint": "remark . -qfo",
+    "lint": "remark . -qfo && eslint .",
     "nyc": "cross-env NODE_ENV=test nyc ava",
     "test": "npm run lint && npm run ava",
     "test-coverage": "npm run lint && npm run nyc"
