@@ -20,7 +20,7 @@
     "Steve Caldwell <scaldwell@gmail.com>"
   ],
   "dependencies": {
-    "joi": "^13.7.0",
+    "@hapi/joi": "^16.1.7",
     "lodash": "^4.17.11"
   },
   "devDependencies": {
@@ -33,12 +33,10 @@
     "eslint-config-archereducation": "^4.3.1",
     "fixpack": "^2.3.1",
     "husky": "^1.1.2",
-    "lint-staged": "^7.3.0",
+    "lint-staged": "^8.2.1",
     "nyc": "^13.0.1",
     "prettier": "^1.18.2",
     "prettier-config-archereducation": "^1.0.0",
-    "remark-cli": "^5.0.0",
-    "remark-preset-github": "^0.0.9",
     "shortid": "^2.2.13"
   },
   "engines": {
@@ -60,10 +58,7 @@
   "lint-staged": {
     "linters": {
       "*.js": [
-        "git add"
-      ],
-      "*.md": [
-        "remark . -qfo",
+        "yarn lint --fix",
         "git add"
       ],
       "package.json": [
@@ -84,11 +79,6 @@
       "text"
     ]
   },
-  "remarkConfig": {
-    "plugins": [
-      "preset-github"
-    ]
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/stevecaldwell77/hebo-validation"
@@ -96,7 +86,7 @@
   "scripts": {
     "ava": "cross-env NODE_ENV=test ava",
     "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-    "lint": "remark . -qfo && eslint .",
+    "lint": "eslint .",
     "nyc": "cross-env NODE_ENV=test nyc ava",
     "test": "npm run lint && npm run ava",
     "test-coverage": "npm run lint && npm run nyc"
